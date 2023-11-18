@@ -6,6 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+    public AudioSource BGM_Source;
+    public AudioSource SFX_Source;
+
     private void Awake()
     {
         if(instance == null)

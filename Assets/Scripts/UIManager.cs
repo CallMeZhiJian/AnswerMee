@@ -6,13 +6,16 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    private bool isPause;
+    
     protected TextMeshProUGUI answerText;
 
     [SerializeField]
     private GameObject SubjectScreen;
     [SerializeField]
     private GameObject LevelScreen;
+    [SerializeField]
+    protected GameObject SettingScreen;
+    
 
     public void StartGame()
     {
@@ -41,6 +44,11 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void Setting()
+    {
+        SettingScreen.SetActive(true);
+    }
+
     public void Back()
     {
         if (LevelScreen.activeInHierarchy)
@@ -52,30 +60,15 @@ public class UIManager : MonoBehaviour
         {
             SubjectScreen.SetActive(false);
         }
+        else if (SettingScreen.activeInHierarchy)
+        {
+            SettingScreen.SetActive(false);
+        }
     }
 
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void Setting()
-    {
-
-    }
-
-    public void PauseResume()
-    {
-        if (isPause)
-        {
-            Time.timeScale = 1;
-            //AudioManager
-        }
-        else
-        {
-            Time.timeScale = 0;
-            //AudioManager
-        }
     }
 
     public void TryAgain()

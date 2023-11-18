@@ -13,16 +13,22 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
     public string answerChose;
     public bool isCorrectAnswer;
     public bool isPressed;
+    private bool isPause;
 
     //Scores
     public int score;
 
     //UI
-    public GameObject resultScreen;
+    [SerializeField]
+    private GameObject resultScreen;
+    [SerializeField]
+    private GameObject PauseScreen;
 
     private void Start()
     {
         _QnASystem = GetComponent<QnASystem>();
+        
+        isPause = false;
 
         answerChose = " ";
 
@@ -76,6 +82,37 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
         isPressed = true;
 
         answerChose = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text;         
+    }
+    public void PauseResume()
+    {
+        if (isPause)
+        {
+            PauseScreen.SetActive(false);
+            isPause = false;
+            Time.timeScale = 1;
+            //AudioManager  
+        }
+        else
+        {
+            PauseScreen.SetActive(true);
+            isPause = true;
+            Time.timeScale = 0;
+            //AudioManager
+            
+        }
+    }
+
+    public new void Setting()
+    {
+        SettingScreen.SetActive(true);
+    }
+
+    public void Back()
+    {
+        if (SettingScreen.activeInHierarchy)
+        {
+            SettingScreen.SetActive(false);
+        }
     }
 
     //void Shuffle<T>(List<T> shuffleNum)
