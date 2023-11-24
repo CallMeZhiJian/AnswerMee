@@ -1,0 +1,7 @@
+Question	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
+350 + 205 = 	500	555	600	605	555
+1080 - ___ = 600	470	480	490	500	480
+820 / 4 = 	190	195	200	205	205
+25 * 4	100	125	25	50	100
+Which is the even number	152	165	181	197	152
+Which is the correct statement?	101 is an even number	120 > 210	50 * 0 = 50	99 is an odd number	99 is an odd number

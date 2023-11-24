@@ -1,3 +1,0 @@
-Question	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
-What is my name?	Lai	Zhi	Jian	Lai Zhi Jian	Lai Zhi Jian
-Err	e	r	r	err	err

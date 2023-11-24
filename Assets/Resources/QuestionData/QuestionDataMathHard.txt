@@ -1,0 +1,7 @@
+Question	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
+Round off 506976 correct to three significant figures	506000	507000	560000	570000	507000
+Which of the following numbers is not 0.200 when round off to three significant  figures?	0.1995	0.2001	0.2004	0.2005	0.2005
+Simplify 3p/4 x q/5r	15pr/4q	4q/15pr	3pq/20r	3pq/5r	3pq/20r
+Which of the following is the solution to the equation 4x−7=25?	x = 8	x = 10	x = 9	x = 7	x = 8
+"If f(x)=2x^2+3x−5, what is f(−2)?"	f(−2)=3	f(−2)=−5	f(−2)=−3	f(−2)=−9	f(−2)=−3
+"If g(x)=2x+5 and g(4)=13, what is the value of x?"	x=4	x=3	x=2	x=1	x=4

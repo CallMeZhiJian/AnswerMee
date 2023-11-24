@@ -10,15 +10,17 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
     private QnASystem _QnASystem;
 
     //indicator
-    public string answerChose;
-    public bool isCorrectAnswer;
-    public bool isPressed;
+    private string answerChose = " ";
+    private bool isCorrectAnswer;
+    private bool isPressed;
     private bool isPause;
-
-    //Scores
-    public int score;
+    private float timer;
+    private float timeUsed;
 
     //UI
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI usedTimeText;
     [SerializeField]
     private GameObject resultScreen;
     [SerializeField]
@@ -26,35 +28,63 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
     private void Start()
     {
+        Time.timeScale = 1;
+
+        AudioManager.instance.PlayBGM();
+
         _QnASystem = GetComponent<QnASystem>();
         
         isPause = false;
 
         answerChose = " ";
 
+        ScoreSystem.score = 0;
+
+        timeUsed = 0;
+
         _QnASystem.DisplayQuestion();
+
+        ResetTimer();
     }
 
     private void Update()
     {
-        if (isPressed)
+        
+        if (QnASystem.currID == _QnASystem.listOfQuestion.Count)
         {
-            if(QnASystem.currID == _QnASystem.listOfQuestion.Count - 1)
+            ScoreText.text = "Score: \n" + ScoreSystem.score + "/" + _QnASystem.listOfQuestion.Count;
+            UpdateTimeFormat();
+            resultScreen.SetActive(true);
+        }
+        else
+        {
+            if(timer <= 0)
             {
-                resultScreen.SetActive(true);
+                isPressed = true;
             }
             else
             {
-                isCorrectAnswer = _QnASystem.CheckAnswer(answerChose);
+                StartTimer();
+            }
+            CalTimeUsage();
+        }
 
-                if (isCorrectAnswer)
-                {
-                    AddScore();
-                }
-                QnASystem.currID++;
-                _QnASystem.DisplayQuestion();
-                isPressed = false;
-            }        
+        if (isPressed)
+        {
+            isCorrectAnswer = _QnASystem.CheckAnswer(answerChose);
+
+            if (isCorrectAnswer)
+            {
+                AddScore();
+            }
+            else
+            {
+                AudioManager.instance.PlaySFX("Incorrect");
+            }
+            QnASystem.currID++;
+            _QnASystem.DisplayQuestion();
+            ResetTimer();
+            isPressed = false;
         }
         else
         {
@@ -64,27 +94,46 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
     public void AddScore()
     {
-        score++;
+        AudioManager.instance.PlaySFX("Correct");
+        ScoreSystem.score++;
     }
 
-    public void OnTimer()
+    public void StartTimer()
     {
-        
+        Mathf.Clamp(timer, 0f, 60f);
+        timer -= Time.deltaTime;
+        int seconds = ((int)(timer % 60));
+        timerText.text = seconds.ToString();
     }
 
-    public void CountDown()
+    public void ResetTimer()
     {
+        timer = TimerSystem.timer;
+    }
 
+    public void CalTimeUsage()
+    {
+        timeUsed += Time.deltaTime;
+    }
+
+    public void UpdateTimeFormat()
+    {
+        float minutes = Mathf.FloorToInt(timeUsed / 60);
+        float seconds = Mathf.FloorToInt(timeUsed % 60);
+
+        usedTimeText.text = "Time: \n" + minutes + ":" + seconds;
     }
 
     public void OnPressAnswer()
     {
+        AudioManager.instance.PlaySFX("Click");
         isPressed = true;
 
         answerChose = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text;         
     }
     public void PauseResume()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (isPause)
         {
             PauseScreen.SetActive(false);
@@ -104,15 +153,8 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
     public new void Setting()
     {
+        AudioManager.instance.PlaySFX("Click");
         SettingScreen.SetActive(true);
-    }
-
-    public void Back()
-    {
-        if (SettingScreen.activeInHierarchy)
-        {
-            SettingScreen.SetActive(false);
-        }
     }
 
     //void Shuffle<T>(List<T> shuffleNum)

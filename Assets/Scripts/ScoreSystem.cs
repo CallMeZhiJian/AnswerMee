@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface ScoreSystem
 {
+    public static int score;
+
     public void AddScore();
 
 }

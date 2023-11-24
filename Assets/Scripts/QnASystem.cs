@@ -32,10 +32,10 @@ public class QnASystem : MonoBehaviour
     {
         listOfQuestion.Clear();
 
-        TextAsset dataFile = Resources.Load<TextAsset>("QuestionData");
+        TextAsset dataFile = Resources.Load<TextAsset>("QuestionData/QuestionData" + AudioManager.currSubject + AudioManager.currDifficulty);
 
         string[] data = dataFile.text.Split(new char[] { '\n' });
-        Debug.Log(data.Length);
+        
         for (int i = 1; i < data.Length - 1; i++)
         {
             string[] row = data[i].Split(new char[] { '\t' });
@@ -70,7 +70,6 @@ public class QnASystem : MonoBehaviour
     {
         if(currID < listOfQuestion.Count)
         {
-            Debug.Log(answer + " == " + listOfQuestion[currID].correctAnswer);
             if (listOfQuestion[currID].correctAnswer.Trim() == answer.Trim())
             {
                 Debug.Log("true: " + listOfQuestion[currID].correctAnswer);
