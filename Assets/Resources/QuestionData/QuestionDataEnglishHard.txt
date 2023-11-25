@@ -1,2 +1,7 @@
 Question	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
-One	One	Two	Three	Four	One
+"Choose the word that is the closest synonym for ""benevolent"":"	Cruel	Generous	Angry	Lazy	Generous
+What angered me wasn't his resignation but the ________ in which he did it.	method	manner	aspect	bearing	manner
+Identify the sentence with the correct use of the past perfect tense:	"""By the time I arrived, they left the party."""	"""She has already gone to the gym today."""	"""The movie starts at 7:30 p.m."""	"""They were studying for hours before the exam."""	"""By the time I arrived, they left the party."""
+"If you can't make ________ what's written, change the zoom level and it'll become clearer."	for	of	up	out	out
+The synonym of solace is 	aggravation	comfort	frustration	confirmed	comfort
+"Marie Curie, one of the best-known ________ in working with radiation, died in 1934."	debutants	revolutionaries	pioneers	rebels	pioneers

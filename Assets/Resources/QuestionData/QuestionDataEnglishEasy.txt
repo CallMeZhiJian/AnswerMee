@@ -1,2 +1,7 @@
-Question	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
-"Choose the word that is the closest synonym for ""benevolent"":"	Cruel	Generous	Angry	Lazy	Generous
+Question (Choose the most suitable option to each sentence)	Answer_1	Answer_2	Answer_3	Answer_4	CorrectAnswer
+Alex is going to _____ for a vacation	the US	US	US of A	usa	the US
+I _____ my dinner. I'll call you later.	eat	am eating	been eating 	has eaten	am eating
+I have am extra pen. You ___ can use it for the day.	shouldn't	can't 	couldn't	may	may
+Ramesh is married to Radha. His brother is her ____. 	cousin	brother-in-law	niece	uncle	brother-in-law
+"It was past midnight, so there were ____ people in the street."	any 	less	few	a few	few
+It gives me immense pleasure _______ you to the party?	to invite	for invitation	in inviting	inviting	in inviting
