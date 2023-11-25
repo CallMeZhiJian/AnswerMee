@@ -19,12 +19,12 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
     //UI
     public TextMeshProUGUI timerText;
-    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI usedTimeText;
     [SerializeField]
     private GameObject resultScreen;
     [SerializeField]
-    private GameObject PauseScreen;
+    private GameObject pauseScreen;
 
     private void Start()
     {
@@ -49,10 +49,27 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
     private void Update()
     {
-        
+        if (AudioManager.instance._BGMSource.mute)
+        {
+            onOffBGMText.text = "Off";
+        }
+        else
+        {
+            onOffBGMText.text = "On";
+        }
+
+        if (AudioManager.instance._SFXSource.mute)
+        {
+            onOffSFXText.text = "Off";
+        }
+        else
+        {
+            onOffSFXText.text = "On";
+        }
+
         if (QnASystem.currID == _QnASystem.listOfQuestion.Count)
         {
-            ScoreText.text = "Score: \n" + ScoreSystem.score + "/" + _QnASystem.listOfQuestion.Count;
+            scoreText.text = "Score: \n" + ScoreSystem.score + "/" + _QnASystem.listOfQuestion.Count;
             UpdateTimeFormat();
             resultScreen.SetActive(true);
         }
@@ -131,19 +148,20 @@ public class GameManager : UIManager, ScoreSystem, TimerSystem
 
         answerChose = GameObject.Find(EventSystem.current.currentSelectedGameObject.name).GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text;         
     }
+
     public void PauseResume()
     {
         AudioManager.instance.PlaySFX("Click");
         if (isPause)
         {
-            PauseScreen.SetActive(false);
+            pauseScreen.SetActive(false);
             isPause = false;
             Time.timeScale = 1;
             //AudioManager  
         }
         else
         {
-            PauseScreen.SetActive(true);
+            pauseScreen.SetActive(true);
             isPause = true;
             Time.timeScale = 0;
             //AudioManager

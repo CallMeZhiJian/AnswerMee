@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,11 +13,11 @@ public class AudioManager : MonoBehaviour
     public BGM_Data[] bGM_Datas;
     public List<SFX_Data> sFX_Datas;
 
-    public Dictionary<string, AudioClip> SFXDictionary;
-    public Dictionary<string, AudioClip> BGMDictionary;
+    Dictionary<string, AudioClip> SFXDictionary;
+    Dictionary<string, AudioClip> BGMDictionary;
 
-    public static string currSubject;
-    public static string currDifficulty;
+    public string currSubject;
+    public string currDifficulty;
 
     private void Awake()
     {
@@ -44,13 +43,13 @@ public class AudioManager : MonoBehaviour
         //Adding SFX data into Dictionary<>
         for (int i = 0; i < sFX_Datas.Count; i++)
         {
-            SFXDictionary.Add(sFX_Datas[i].ClipName, sFX_Datas[i].SFX);
+            SFXDictionary.Add(sFX_Datas[i]._ClipName, sFX_Datas[i]._SFX);
         }
 
         //Adding BGM data into Dictionary<>
         for (int i = 0; i < bGM_Datas.Length; i++)
         {
-            BGMDictionary.Add(bGM_Datas[i].Name, bGM_Datas[i].BGM);
+            BGMDictionary.Add(bGM_Datas[i]._Name, bGM_Datas[i]._BGM);
         }
     }
 
@@ -64,8 +63,8 @@ public class AudioManager : MonoBehaviour
         {
             SFX_Data sFX_Data = new SFX_Data();
 
-            sFX_Data.SFX = clips_SFX[i];
-            sFX_Data.ClipName = clips_SFX[i].name;
+            sFX_Data._SFX = clips_SFX[i];
+            sFX_Data._ClipName = clips_SFX[i].name;
 
             sFX_Datas.Add(sFX_Data);
         }
@@ -100,13 +99,13 @@ public class AudioManager : MonoBehaviour
 [System.Serializable]
 public class BGM_Data
 {
-    public string Name;
-    public AudioClip BGM;
+    public string _Name;
+    public AudioClip _BGM;
 }
 
 public class SFX_Data
 {
-    public string ClipName;
-    public AudioClip SFX;
+    public string _ClipName;
+    public AudioClip _SFX;
 }
 

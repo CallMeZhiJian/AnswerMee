@@ -32,7 +32,7 @@ public class QnASystem : MonoBehaviour
     {
         listOfQuestion.Clear();
 
-        TextAsset dataFile = Resources.Load<TextAsset>("QuestionData/QuestionData" + AudioManager.currSubject + AudioManager.currDifficulty);
+        TextAsset dataFile = Resources.Load<TextAsset>("QuestionData/QuestionData" + AudioManager.instance.currSubject + AudioManager.instance.currDifficulty);
 
         string[] data = dataFile.text.Split(new char[] { '\n' });
         
@@ -72,12 +72,10 @@ public class QnASystem : MonoBehaviour
         {
             if (listOfQuestion[currID].correctAnswer.Trim() == answer.Trim())
             {
-                Debug.Log("true: " + listOfQuestion[currID].correctAnswer);
                 return true;
             }
             else
             {
-                Debug.Log("false: " + listOfQuestion[currID].correctAnswer);
                 return false;
             }
         }

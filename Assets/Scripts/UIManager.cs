@@ -15,11 +15,36 @@ public class UIManager : MonoBehaviour
     private GameObject LevelScreen;
     [SerializeField]
     protected GameObject SettingScreen;
+    [SerializeField]
+    protected TextMeshProUGUI onOffBGMText;
+    [SerializeField]
+    protected TextMeshProUGUI onOffSFXText;
 
     private void Start()
     {
-        AudioManager.currDifficulty = "MainMenu";
+        AudioManager.instance.currDifficulty = "MainMenu";
         AudioManager.instance.PlayBGM();
+    }
+
+    private void Update()
+    {
+        if (AudioManager.instance._BGMSource.mute)
+        {
+           onOffBGMText.text = "Off";
+        }
+        else
+        {
+            onOffBGMText.text = "On";
+        }
+
+        if (AudioManager.instance._SFXSource.mute)
+        {
+            onOffSFXText.text = "Off";
+        }
+        else
+        {
+            onOffSFXText.text = "On";
+        }
     }
 
     public void StartGame()
@@ -31,7 +56,7 @@ public class UIManager : MonoBehaviour
     public void SelectMath()
     {
         AudioManager.instance.PlaySFX("Click");
-        AudioManager.currSubject = "Math";
+        AudioManager.instance.currSubject = "Math";
         LevelScreen.SetActive(true);
         SubjectScreen.SetActive(false);
     }
@@ -39,7 +64,7 @@ public class UIManager : MonoBehaviour
     public void SelectEnglish()
     {
         AudioManager.instance.PlaySFX("Click");
-        AudioManager.currSubject = "English";
+        AudioManager.instance.currSubject = "English";
         LevelScreen.SetActive(true);
         SubjectScreen.SetActive(false);
     }
@@ -47,14 +72,14 @@ public class UIManager : MonoBehaviour
     public void SelectEasy()
     {
         AudioManager.instance.PlaySFX("Click");
-        AudioManager.currDifficulty = "Easy";
+        AudioManager.instance.currDifficulty = "Easy";
         SceneManager.LoadScene("GameScene");
     }
 
     public void SelectHard()
     {
         AudioManager.instance.PlaySFX("Click");
-        AudioManager.currDifficulty = "Hard";
+        AudioManager.instance.currDifficulty = "Hard";
         SceneManager.LoadScene("GameScene");
     }
 
@@ -105,5 +130,31 @@ public class UIManager : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Click");
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ToggleMuteUnMuteBGM()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (AudioManager.instance._BGMSource.mute)
+        {
+            AudioManager.instance._BGMSource.mute = false;
+        }
+        else
+        {
+            AudioManager.instance._BGMSource.mute = true;
+        }
+    }
+
+    public void ToggleMuteUnMuteSFX()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (AudioManager.instance._SFXSource.mute)
+        {
+            AudioManager.instance._SFXSource.mute = false;
+        }
+        else
+        {
+            AudioManager.instance._SFXSource.mute = true;
+        }
     }
 }
